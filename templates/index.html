@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %} Rickardo Henry{% endblock %}
+
+
+{% block body %}
+
+<h2 class="mt-5 mb-5 text-center text-primary">To Do List Web App</h2>
+
+<form action="/submit" method="post">
+
+  <div class="form-row">
+    <div class="col-5">
+      <input type="text" class="form-control" name="taskName" placeholder="Task Name">
+    </div>
+
+    <div class="col-2">
+      <input type="email" class="form-control" name="emailAddress" placeholder="Email Address">
+    </div>
+
+    <div class="col-2">
+        <select name="taskPriority"  class="form-control">
+            <option value="Priority Level">Priority Level</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+    </div>
+
+    <button class="ml-2 btn-outline-primary">Add To Do Item </button>
+</form>
+<form action="/clearAllTasks" method="POST">
+<button class="ml-2 btn-lg btn-outline-danger">Clear All Tasks </button>
+</form>
+</div>
+
+<!-- Recorded Tasks Table -->
+<style media="screen">
+  .table{
+      width: 50%;
+      padding-right: 10%;
+  }
+</style>
+
+<center>
+      <table class="mt-5 table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Task Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tasks in task_to_do %}
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ tasks[0] }}</td>
+            <td>{{ tasks[1] }}</td>
+            <td>{{ tasks[2] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</center>
+
+{% endblock %}
